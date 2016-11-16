@@ -1,6 +1,6 @@
 var express = require('express');
-var Vectorizer = require('./lib/index');
-var app = new Vectorizer('postgres://honjo@localhost/gsisample');
+var SimpleVectorizer = require('./lib/index');
+var app = new SimpleVectorizer('postgres://honjo@localhost/gsisample');
 app.server.use(express.static('public'));
 app.layer('gsisample_layer', function(tile, render) {
     var layers = {};
