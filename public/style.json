@@ -1,0 +1,279 @@
+{
+  "version": 8,
+  "name": "gsisample",
+  "sources": {
+    "gsisample": {
+      "attribution":"© Mapion 地図データ 数値地図（国土基本情報）サンプル",
+      "tiles": [
+        "http://localhost:3000/gsisample_layer/{z}/{x}/{y}.pbf"
+      ],
+      "type": "vector",
+      "maskLevel":8,
+      "maxzoom":16,
+      "minzoom":14,
+      "vector_layers":[
+        {
+          "description":"",
+          "fields":{},
+          "id":"rdcl"
+        },
+        {
+          "description":"",
+          "fields":{},
+          "id":"railcl"
+        },
+        {
+          "description":"",
+          "fields":{},
+          "id":"blda"
+        },
+        {
+          "description":"",
+          "fields":{},
+          "id":"trfstrct"
+        }
+      ]
+    }
+  },
+
+  "layers": [
+    {
+      "id": "background",
+      "type": "background",
+      "layout": {
+        "visibility": "visible"
+      },
+      "paint": {
+        "background-color": "#fcfcde"
+      }
+    },
+
+    {
+      "id": "shikutyousondou_case",
+      "type": "line",
+      "source": "gsisample",
+      "source-layer": "rdcl",
+      "minzoom": 14,
+      "maxzoom": 20,
+      "interactive": true,
+      "filter": ["==", "rdctg", "市区町村道等"],
+      "layout": {
+        "visibility": "visible",
+        "line-cap": "butt",
+        "line-join": "round"
+      },
+      "paint": {
+        "line-width": {
+          "base": 1,
+          "stops": [[14, 3.3], [15, 5], [16, 7]]
+        },
+        "line-color": "#c3c3c3"
+      }
+    },
+
+    {
+      "id": "rdcl_todoufukendou_case",
+      "type": "line",
+      "source": "gsisample",
+      "source-layer": "rdcl",
+      "minzoom": 14,
+      "maxzoom": 20,
+      "interactive": true,
+      "filter": ["==", "rdctg", "都道府県道"],
+      "layout": {
+        "visibility": "visible",
+        "line-cap": "butt",
+        "line-join": "round"
+      },
+      "paint": {
+        "line-width": {
+          "base": 1,
+          "stops": [[14, 5], [15, 7], [16, 14]]
+        },
+        "line-color": "#888888"
+      }
+    },
+
+    {
+      "id": "rdcl_kokudou_case",
+      "type": "line",
+      "source": "gsisample",
+      "source-layer": "rdcl",
+      "minzoom": 14,
+      "maxzoom": 20,
+      "interactive": true,
+      "filter": ["==", "rdctg", "国道"],
+      "layout": {
+        "visibility": "visible",
+        "line-cap": "butt",
+        "line-join": "round"
+      },
+      "paint": {
+        "line-width": {
+          "base": 1,
+          "stops": [[14, 5], [15, 7], [16, 14]]
+        },
+        "line-color": "#888888"
+      }
+    },
+
+    {
+      "id": "shikutyousondou",
+      "ref": "shikutyousondou_case",
+      "paint": {
+        "line-width": {
+          "base": 1,
+          "stops": [[14, 1.8], [15, 3.5], [16, 5.5]]
+        },
+        "line-color": "#fff"
+      }
+    },
+
+    {
+      "id": "rdcl_todoufukendou",
+      "ref": "rdcl_todoufukendou_case",
+      "paint": {
+        "line-width": {
+          "base": 1,
+          "stops": [[14, 3.5], [15, 5.5], [16, 12.5]]
+        },
+        "line-color": "#fcf39b"
+      }
+    },
+
+    {
+      "id": "rdcl_kokudou",
+      "ref": "rdcl_kokudou_case",
+      "paint": {
+        "line-width": {
+          "base": 1,
+          "stops": [[14, 3.5], [15, 5.5], [16, 12.5]]
+        },
+        "line-color": "#efc784"
+      }
+    },
+
+    {
+      "id": "kousokujidousyakokudou_case",
+      "type": "line",
+      "source": "gsisample",
+      "source-layer": "rdcl",
+      "minzoom": 14,
+      "maxzoom": 20,
+      "interactive": true,
+      "filter": ["==", "rdctg", "高速自動車国道等"],
+      "layout": {
+        "visibility": "visible",
+        "line-cap": "butt",
+        "line-join": "round"
+      },
+      "paint": {
+        "line-width": {
+          "base": 1,
+          "stops": [[14, 5], [15, 7], [16, 14]]
+        },
+        "line-color": "#212431"
+      }
+    },
+
+    {
+      "id": "kousokujidousyakokudou",
+      "ref": "kousokujidousyakokudou_case",
+      "paint": {
+        "line-width": {
+          "base": 1,
+          "stops": [[14, 3.5], [15, 5.5], [16, 12.5]]
+        },
+        "line-color": "#7e92ce"
+      }
+    },
+
+    {
+      "id": "blda",
+      "type": "fill",
+      "source": "gsisample",
+      "source-layer": "blda",
+      "filter": ["==", "$type", "Polygon"],
+      "layout": {
+        "visibility": "visible"
+      },
+      "paint": {
+        "fill-color": "#dfdbd7"
+      }
+    },
+
+    {
+      "id": "blda_top",
+      "ref": "blda",
+      "paint": {
+        "fill-color": "#f2eae2",
+        "fill-translate": [-2, -2],
+        "fill-outline-color": "#dfdbd7"
+      }
+    },
+
+    {
+      "id": "railcl",
+      "type": "line",
+      "source": "gsisample",
+      "source-layer": "railcl",
+      "minzoom": 5,
+      "maxzoom": 22,
+      "interactive": true,
+      "filter": ["==", "$type", "LineString"],
+      "layout": {
+        "visibility": "visible",
+        "line-cap": "butt"
+      },
+      "paint": {
+        "line-color": "#4c4c4c",
+        "line-width": 0.5,
+        "line-gap-width": {
+          "base": 1,
+          "stops": [[14, 3.5], [15, 4.5], [16, 12.5]]
+        }
+      }
+    },
+
+    {
+      "id": "railcl_dash_0",
+      "ref": "railcl",
+      "paint": {
+        "line-width": {
+          "base": 1,
+          "stops": [[14, 3.5], [15, 4.5], [16, 12.5]]
+        },
+        "line-color": "#fff"
+      }
+    },
+
+    {
+      "id": "railcl_dash_1",
+      "ref": "railcl",
+      "paint": {
+        "line-width": {
+          "base": 1,
+          "stops": [[14, 3.5], [15, 4.5], [16, 12.5]]
+        },
+        "line-dasharray": [5, 6],
+        "line-color": "#4c4c4c"
+      }
+    },
+
+    {
+      "id": "trfstrct",
+      "type": "fill",
+      "source": "gsisample",
+      "source-layer": "trfstrct",
+      "filter": ["==", "$type", "Polygon"],
+      "layout": {
+        "visibility": "visible"
+      },
+      "paint": {
+        "fill-color": "#dc7878",
+        "fill-outline-color": "#993333"
+      }
+    }
+
+  ]
+}
